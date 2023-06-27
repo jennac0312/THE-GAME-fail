@@ -1,3 +1,7 @@
+body{
+    box-sizing: border-box;
+}
+
 #canvas{
     border: 2px solid red;
     height: 500px;
@@ -23,16 +27,31 @@ h1{
         transform: translateY();
     }
     100%{
-        transform: translateY(1000%);
+        transform: translateY(1000px);
 
     }
 }
 
 .fall{
     animation: falling 2s infinite;
+    position: relative;
 }
 
 .fallingContainer{
+    border: 2px solid purple;
+    margin: auto;
+    width: 800px;
     display: flex;
     flex-wrap: wrap;
+}
+
+.fallingContainer * {
+    border: 2px solid green;
+    width: fit-content;
+}
+
+.chickens{
+    border: 2px solid grey !important;
+    width: 100% !important;
+
 }

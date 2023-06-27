@@ -2,10 +2,16 @@ const canvas = document.querySelector('#canvas')
 const ctx = canvas.getContext('2d')
 const body = document.querySelector('body')
 const fallingContainer = document.querySelector('.fallingContainer')
+const chickensContainer = document.querySelector('.chickens')
+const GAME_WIDTH = 800
+
+const player1 = ctx
 
 canvas.height = 500
 canvas.width = 800
+
 // canvas.style.opacity = .5
+
 console.log(canvas.height)
 console.log(canvas.width)
 
@@ -20,7 +26,7 @@ let vy = 0
 
 const update = () => {
     // resetting canvas position... prevents "paint brushing"..
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    player1.clearRect(0, 0, canvas.width, canvas.height)
 
     // console.log( canvas.getBoundingClientRect() )
 
@@ -32,7 +38,16 @@ const update = () => {
     if(y > 310){ //prevents from moving underneath
         y = 310
     }
-    ctx.fillRect(x, y, 50, 50)
+
+    // loop horizontally
+    if(x < 0){
+        x = 800
+    }
+    if(x > 800){
+        x = 0
+    }
+
+    player1.fillRect(x, y, 50, 50)
 
     // collision()
     requestAnimationFrame(update)
@@ -48,7 +63,7 @@ update()
 
 // gravity
 setInterval(() => {
-    // vy += 0.025
+    vy += 0.025
 })
 
 // random inclusive
@@ -60,24 +75,28 @@ function getRandomIntInclusive(min, max) {
 
 
 class FallingObject {
-    constructor(name, img){
+    constructor(name, symbol){
         this.name = name,
-        this.img = img
+        this.symbol = symbol
         this.caught = null
         this.value = 1,
-        this.fallPoint = getRandomIntInclusive(100,500)
+        this.fallPoint = getRandomIntInclusive(0,500)
     }
     upScore(who){
         who.score++
     }
     beginFall(){
         //add object to page before canvas container
-        let element = document.createElement('img')
-        element.src = this.img
-        fallingContainer.append(element)
+        let element = document.createElement('span')
+        element.innerHTML = this.symbol
+        // fallingContainer.append(element)
+        // chickensContainer.append(element)
         console.log(element)
-        element.style.marginLeft = `${this.fallPoint}px`
+        element.style.left = `${this.fallPoint}px`
         element.classList.toggle('fall')
+
+
+
     }
 
 }
@@ -91,17 +110,17 @@ const player = {
 }
 
 
-const orange = new FallingObject('orange','https://www.minecraftskins.com/uploads/preview-skins/2021/05/16/cute-enchanted-golden-apple-17818333.png?v538')
+const chicken = new FallingObject('chicken','🐔')
 
 // orange.beginFall()
 
 
-let oranges = []
-const createOranges = () => {
+let chickens = []
+const createChickens = () => {
     // oranges.push(new FallingObject('orange','https://www.minecraftskins.com/uploads/preview-skins/2021/05/16/cute-enchanted-golden-apple-17818333.png?v538'))
 
-    let createdOrange = new FallingObject('orange','https://www.minecraftskins.com/uploads/preview-skins/2021/05/16/cute-enchanted-golden-apple-17818333.png?v538')
-    return createdOrange
+    let newChicken = new FallingObject('chicken','🐔')
+    return newChicken
 }
 
 
@@ -109,13 +128,13 @@ const createOranges = () => {
 //     oranges.forEach((orange) => {
 //         orange.beginFall()
 //     }), 10)
-let fruitLength = fallingContainer.childNodes.length
+// let fruitLength = fallingContainer.childNodes.length
 // while(fruitLength <= 10){
     setInterval(() => {
         for(let i = 0; i <= 1; i++){
-            createOranges().beginFall()
+            // createChickens().beginFall()
         }
-        fruitLength = fallingContainer.childNodes.length
+        // fruitLength = fallingContainer.childNodes.length
     }, 10000)
 
 // }
@@ -124,3 +143,25 @@ let fruitLength = fallingContainer.childNodes.length
 //every 10 seconds 2 oranges fall.. then return to staring pos
     
 
+
+// random horizontal placement
+
+//  need falling objs to render as canvas
+
+class FallingChicken {
+    constructor(symbol){
+        this.symbol = symbol
+        this.xPos = getRandomIntInclusive(0, GAME_WIDTH)
+        this.yPos = 0
+    }
+    appear(ctx){
+        ctx.fillText(this.symbol, this.xPos, this.yPos)
+        ctx.font = '10px sans-serif' //default size
+    }
+    drop(){
+        if(this.yPos >400) this.yPos++
+    }
+}
+
+
+const chickenTry = new FallingChicken('🐔')
