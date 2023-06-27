@@ -1,0 +1,37 @@
+.test{
+    border: 2px solid black;
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+.kirby, .blueKirby{
+    height: 30px;
+    width: 30px;
+}
+.kirby{
+    z-index: 2;
+}
+
+img{
+    border: 2px solid red;
+}
+
+
+@keyframes moveRight {
+    0%{
+
+    }
+    100%{
+        transform: translateX(30%);
+    }
+}
+
+
+.moveRight{
+    animation: moveRight 1s forwards;
+}
