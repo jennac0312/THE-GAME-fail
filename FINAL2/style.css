@@ -5,7 +5,7 @@ body{
     font-family: 'Agdasima';
     width: 390px;
     height: 844px;
-    background-color: black;
+    /* background-color: black; */
     /* border: 2px solid yellow; */
     color: moccasin;
     text-align: center;
@@ -33,12 +33,21 @@ body * {
 }
 
 .landingScreen > *{
-    margin-bottom: 10px
+    margin-bottom: 10px;
+}
+
+.content{
+    /* border: 2px solid yellow; */
+    height: 345px;
+    width: 100%;
+    position: relative;
 }
 
 h2{
     /* color: mintcream; */
     letter-spacing: 15px;
+    padding-bottom: 10px;;
+    /* border-bottom: 2px dashed moccasin; */
 }
 
 .title{
@@ -63,26 +72,35 @@ h2{
     margin-top: -30px !important;
 }
 
+.content p{
+    /* border: 2px solid red; */
+    color: black;
+    opacity: .6;
+}
 
 .buttons{
     /* border: 2px solid grey; */
+    height: 120px;
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    margin-top: 50px;
+    margin-top: -20px;
 }
 
 button{
     width: 140px;
     height: 40px;
     /* background-color: rgba(245, 255, 250, .5); */
-    background-color: mintcream;
-    color: rgb(39, 39, 39);
+    background-color: moccasin;
+    /* color: rgb(39, 39, 39); */
+    color: black;
     border: none;
     border-radius: 5px;
     /* font-size: .9em; */
     font-weight: bold;
     letter-spacing: 2px;
+    opacity: .8;
+    align-self: flex-end;
 
     /* animation: flashing 1s steps(2,start) infinite; */
 }
@@ -90,7 +108,7 @@ button{
 button:hover{
     cursor: pointer;
     /* background-color: mintcream; */
-    background-color: rgba(245, 255, 250, .5);
+    background-color: rgb(168, 134, 74);
     /* color: rgba(0, 0, 0, .5) */
     color: mintcream
 
@@ -174,6 +192,10 @@ button:hover{
 /* hidden */
 .hidden{
     display: none;
+}
+/* italic */
+.italic{
+    font-style: italic;
 }
 
 
